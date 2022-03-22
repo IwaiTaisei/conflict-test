@@ -1,10 +1,21 @@
-from flask import flask, render_template
+from flask import flask, render_template, request
 
 app = Flask(_name_)
 
 @app.route("/")
 def top_page():
     return render_template("index.html")
+
+@app.route("/square_input")
+def square_input():
+    return render_template("square_input.html")
+
+@app.route("/square_result")
+def square_result():
+    height = int(request.args.get("height"))
+    bottom = int(request.args.get("bottom"))
+    result = height * bottom
+    return render_template("spuare_result.html", result=result)
 
 if _name_ == "_main_":
     app.run(debug=true)
